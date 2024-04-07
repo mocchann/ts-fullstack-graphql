@@ -1,22 +1,22 @@
-import crypto from "crypto";
 import { Resolvers } from "../../../__generated__/graphql.js";
-import { MyContext } from "../../root/greet.resolvers.js";
+import { MyContext } from "../../../types/graphql.js";
 
-const resolvers: Resolvers<MyContext> = {
+export const resolvers: Resolvers<MyContext> = {
   Mutation: {
-    makeTodo: async (_, { makeTodoInput }, context, info) => {
-      const todoItem = {
-        id: crypto.randomUUID(),
-        title: makeTodoInput.title,
-        updatedAt: new Date().toString(),
-        createdAt: new Date().toString(),
-      };
+    makeTodo: async (_, { makeTodoInput }, { prismaClient }, info) => {
+      const newTodo = await prismaClient.todo.create({
+        data: {
+          title: makeTodoInput.title,
+        },
+      });
 
       return {
-        todo: todoItem,
+        todo: {
+          ...newTodo,
+          updatedAt: newTodo.updatedAt.toISOString(),
+          createdAt: newTodo.createdAt.toISOString(),
+        },
       };
     },
   },
 };
-
-export default resolvers;
