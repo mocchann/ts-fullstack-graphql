@@ -4,22 +4,20 @@ import { ApolloServer } from "@apollo/server";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import { expressMiddleware } from "@apollo/server/express4";
 import express from "express";
-import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
-import { MyContext } from "./modules/root/greet.resolvers.js";
-import greetTypeDefs from "./modules/root/greet.typeDefs.js";
-import greetResolvers from "./modules/root/greet.resolvers.js";
-import makeTodoTypeDefs from "./modules/todos/make-todo/make-todo.typeDefs.js";
-import makeTodoResolvers from "./modules/todos/make-todo/make-todo.resolvers.js";
-import TodoTypeDefs from "./modules/root/models/todo.typeDefs.js";
+import { PrismaClient} from '@prisma/client';
+import { MyContext } from "./modules/root/greet/greet.resolvers.js";
+import { buildSchema } from "./utils/buildSchema.js";
+
+const prismaClient = new PrismaClient();
 
 async function main() {
+  await prismaClient.$connect();
   const PORT = process.env.PORT || 5555;
   const app = express();
 
   const httpServer = http.createServer(app);
   const server = new ApolloServer<MyContext>({
-    typeDefs: mergeTypeDefs([greetTypeDefs, makeTodoTypeDefs, TodoTypeDefs]),
-    resolvers: mergeResolvers([greetResolvers, makeTodoResolvers]),
+    schema: await buildSchema(),
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 
@@ -30,7 +28,7 @@ async function main() {
   app.use(
     "/graphql",
     expressMiddleware(server, {
-      context: async ({ req, res }) => ({ req, res }),
+      context: async ({ req, res }) => ({ req, res, prismaClient }),
     })
   );
 
@@ -41,7 +39,8 @@ async function main() {
   console.log(`🚀 server is up and runninng at http://localhost:${PORT}`);
 }
 
-main().catch((err) => {
+main().catch(async (err) => {
   console.error(err);
+  await prismaClient.$disconnect();
   process.exit(1);
 });
