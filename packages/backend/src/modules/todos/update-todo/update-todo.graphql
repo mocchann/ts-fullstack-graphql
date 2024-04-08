@@ -1,0 +1,12 @@
+input UpdateTodoInput {
+  title: String
+  isCompleted: Boolean
+}
+
+type UpdateTodoResponse {
+  todo: Todo!
+}
+
+type Mutation {
+  updateTodo(UpdateTodoInput: UpdateTodoInput!): UpdateTodoResponse!
+}
