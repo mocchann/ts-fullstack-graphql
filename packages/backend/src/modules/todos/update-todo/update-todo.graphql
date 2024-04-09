@@ -9,5 +9,5 @@ type UpdateTodoResponse {
 }
 
 type Mutation {
-  updateTodo(UpdateTodoInput: UpdateTodoInput!): UpdateTodoResponse!
+  updateTodo(updateTodoInput: UpdateTodoInput!): UpdateTodoResponse!
 }
