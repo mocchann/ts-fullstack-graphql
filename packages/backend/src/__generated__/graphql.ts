@@ -71,6 +71,7 @@ export type Todo = {
   __typename?: 'Todo';
   createdAt: Scalars['String']['output'];
   id: Scalars['String']['output'];
+  isCompleted: Scalars['Boolean']['output'];
   title: Scalars['String']['output'];
   updatedAt: Scalars['String']['output'];
 };
@@ -78,6 +79,7 @@ export type Todo = {
 export type UpdateTodoInput = {
   isCompleted?: InputMaybe<Scalars['Boolean']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  todoId: Scalars['String']['input'];
 };
 
 export type UpdateTodoResponse = {
@@ -215,6 +217,7 @@ export type RemoveTodoResponseResolvers<ContextType = any, ParentType extends Re
 export type TodoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Todo'] = ResolversParentTypes['Todo']> = {
   createdAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  isCompleted?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
