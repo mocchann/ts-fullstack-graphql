@@ -6,17 +6,36 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon dist/index.js",
-    "watch": "tsc --watch",
+    "watch": "npm run cpgql && tsc --watch",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "lint": "eslint \"/src/**/*.{js,jsx,ts,tsx,json}\"",
+    "gen": "graphql-codegen --config codegen.yml",
+    "cpgql": "copyfiles -u 1 src/**/*.graphql ./dist",
+    "gen:db": "prisma migrate dev --name",
+    "gui:db": "prisma studio"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/typescript": "4.0.6",
+    "@graphql-codegen/typescript-resolvers": "4.0.6",
+    "@types/express": "4.17.21",
+    "@types/glob": "8.1.0",
     "@types/node": "20.12.5",
+    "copyfiles": "2.4.1",
     "eslint": "9.0.0",
     "nodemon": "3.1.0",
     "typescript": "5.4.4"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.10.2",
+    "@prisma/client": "5.12.1",
+    "express": "^4.19.2",
+    "glob": "10.3.12",
+    "graphql": "^16.8.1",
+    "prisma": "5.12.1"
   }
 }
