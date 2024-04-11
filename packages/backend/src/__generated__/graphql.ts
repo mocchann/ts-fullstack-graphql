@@ -70,7 +70,7 @@ export type Query = {
 
 
 export type QueryGetTodoArgs = {
-  getTodo: GetTodoInput;
+  getTodoInput: GetTodoInput;
 };
 
 export type RemoveTodoInput = {
@@ -229,7 +229,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  getTodo?: Resolver<ResolversTypes['GetTodoResponse'], ParentType, ContextType, RequireFields<QueryGetTodoArgs, 'getTodo'>>;
+  getTodo?: Resolver<ResolversTypes['GetTodoResponse'], ParentType, ContextType, RequireFields<QueryGetTodoArgs, 'getTodoInput'>>;
   getTodos?: Resolver<Maybe<ResolversTypes['GetTodosResponse']>, ParentType, ContextType>;
   greet?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
 };
