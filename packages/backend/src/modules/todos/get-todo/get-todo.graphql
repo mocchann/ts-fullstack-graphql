@@ -7,5 +7,5 @@ type GetTodoResponse {
 }
 
 type Query {
-  getTodo(getTodo: GetTodoInput!): GetTodoResponse!
+  getTodo(getTodoInput: GetTodoInput!): GetTodoResponse!
 }
