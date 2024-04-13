@@ -1,5 +1,6 @@
 input MakeTodoInput {
   title: String!
+  testDateTime: DateTime!
 }
 
 type MakeTodoResponse {
