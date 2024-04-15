@@ -14,7 +14,6 @@ type Props = {
 };
 
 export default function App(data: Props) {
-  console.log(data);
   return (
     <>
       <Logo />
