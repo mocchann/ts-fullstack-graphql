@@ -1,17 +1,36 @@
+import {
+  ReactElement,
+  JSXElementConstructor,
+  ReactNode,
+  ReactPortal,
+} from "react";
 import "./App.css";
 import { Card } from "./components/Card";
 import { Logo } from "./components/Logo";
 import { ReadTheDocs } from "./components/ReadTheDocs";
 
-function App() {
+type Props = {
+  data: string;
+};
+
+export default function App(data: Props) {
+  console.log(data);
   return (
     <>
       <Logo />
-      <h1>Vite + React</h1>
+      <h1>{data}</h1>
       <Card />
       <ReadTheDocs />
     </>
   );
 }
 
-export default App;
+export async function getServerSideProps() {
+  const data = "Vite + React";
+
+  return {
+    props: {
+      data,
+    },
+  };
+}
