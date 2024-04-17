@@ -1,10 +1,3 @@
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
-} from "react";
-import "./App.css";
 import { Card } from "./components/Card";
 import { Logo } from "./components/Logo";
 import { ReadTheDocs } from "./components/ReadTheDocs";
@@ -13,11 +6,11 @@ type Props = {
   data: string;
 };
 
-export default function App(data: Props) {
+export default function App(props: Props) {
   return (
     <>
       <Logo />
-      <h1>{data}</h1>
+      <h1>{props.data}</h1>
       <Card />
       <ReadTheDocs />
     </>
