@@ -1,3 +1,7 @@
+let fistName = "";
+let lastName = "";
+let isEdit = false;
+
 function handleFormSubmit(e) {
   e.preventDefault();
   if (editButton.textContent === "Edit Profile") {
