@@ -2,31 +2,50 @@ let fistName = "";
 let lastName = "";
 let isEdit = false;
 
+function setEdit() {
+  isEdit = !isEdit;
+}
+
+function setFirstName(targetValue) {
+  firstName = targetValue;
+}
+
+function setLastName(targetValue) {
+  lastName = targetValue;
+}
+
 function handleFormSubmit(e) {
   e.preventDefault();
-  if (editButton.textContent === "Edit Profile") {
+  if (isEdit) {
     editButton.textContent = "Save Profile";
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
+    setEdit(isEdit);
   } else {
     editButton.textContent = "Edit Profile";
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
     show(lastNameText);
+    setEdit(isEdit);
   }
 }
 
-function handleFirstNameChange() {
-  firstNameText.textContent = firstNameInput.value;
-  helloText.textContent =
-    "Hello " + firstNameInput.value + " " + lastNameInput.value + "!";
+function handleFirstNameChange(e) {
+  setFirstName(e.target.value);
+  firstNameText.textContent = firstName;
+  updateDom();
 }
 
-function handleLastNameChange() {
-  lastNameText.textContent = lastNameInput.value;
+function handleLastNameChange(e) {
+  setLastName(e.target.value);
+  lastNameText.textContent = lastName;
+  updateDom();
+}
+
+function updateDom() {
   helloText.textContent =
     "Hello " + firstNameInput.value + " " + lastNameInput.value + "!";
 }
