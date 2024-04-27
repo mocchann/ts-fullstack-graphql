@@ -19,7 +19,6 @@ export function messengerReducer(state, action) {
       };
     }
     case "submit_message": {
-      alert(`${action.email} ${action.message}`);
       return {
         ...state,
         message: "",
