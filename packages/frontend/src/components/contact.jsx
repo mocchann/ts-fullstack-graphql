@@ -1,39 +1,23 @@
-import { useState } from "react";
-import Contact from "./Contact.js";
-
-export default function ContactList() {
-  const [reverse, setReverse] = useState(false);
-
-  const displayedContacts = [...contacts];
-  if (reverse) {
-    displayedContacts.reverse();
-  }
-
+export default function ContactList({ contacts, selectedId, dispatch }) {
   return (
-    <>
-      <label>
-        <input
-          type="checkbox"
-          value={reverse}
-          onChange={(e) => {
-            setReverse(e.target.checked);
-          }}
-        />{" "}
-        Show in reverse order
-      </label>
+    <section className="contact-list">
       <ul>
-        {displayedContacts.map((contact, i) => (
+        {contacts.map((contact) => (
           <li key={contact.id}>
-            <Contact contact={contact} />
+            <button
+              onClick={() => {
+                // TODO: dispatch changed_selection
+                dispatch({
+                  type: "changed_selection",
+                  contactId: contact.id,
+                });
+              }}
+            >
+              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
+            </button>
           </li>
         ))}
       </ul>
-    </>
+    </section>
   );
 }
-
-const contacts = [
-  { id: 0, name: "Alice", email: "alice@mail.com" },
-  { id: 1, name: "Bob", email: "bob@mail.com" },
-  { id: 2, name: "Taylor", email: "taylor@mail.com" },
-];
