@@ -4,7 +4,7 @@ import { ApolloServer } from "@apollo/server";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import { expressMiddleware } from "@apollo/server/express4";
 import express from "express";
-import { PrismaClient} from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 import { MyContext } from "./modules/root/greet/greet.resolvers.js";
 import { buildSchema } from "./utils/buildSchema.js";
 
@@ -12,6 +12,7 @@ const prismaClient = new PrismaClient();
 
 async function main() {
   await prismaClient.$connect();
+
   const PORT = process.env.PORT || 5555;
   const app = express();
 
