@@ -2,7 +2,7 @@ import { GraphQLScalarType } from "graphql";
 import { Resolvers } from "../../../__generated__/graphql.js";
 
 export const resolvers: Resolvers = {
-  DateTime: new GraphQLScalarType({
+  Datetime: new GraphQLScalarType({
     name: "Datetime",
     description: "Datetime custom scalar type",
     serialize(value) {
