@@ -14,7 +14,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-  Datetime: { input: any; output: any; }
+  DateTime: { input: Date; output: Date; }
 };
 
 export type GetTodoInput = {
@@ -85,11 +85,11 @@ export type RemoveTodoResponse = {
 
 export type Todo = {
   __typename?: 'Todo';
-  createdAt: Scalars['Datetime']['output'];
+  createdAt: Scalars['DateTime']['output'];
   id: Scalars['String']['output'];
   isCompleted: Scalars['Boolean']['output'];
   title: Scalars['String']['output'];
-  updatedAt: Scalars['Datetime']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type UpdateTodoInput = {
@@ -175,7 +175,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  Datetime: ResolverTypeWrapper<Scalars['Datetime']['output']>;
+  DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
   GetTodoInput: GetTodoInput;
   GetTodoResponse: ResolverTypeWrapper<GetTodoResponse>;
   GetTodosResponse: ResolverTypeWrapper<GetTodosResponse>;
@@ -194,7 +194,7 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
-  Datetime: Scalars['Datetime']['output'];
+  DateTime: Scalars['DateTime']['output'];
   GetTodoInput: GetTodoInput;
   GetTodoResponse: GetTodoResponse;
   GetTodosResponse: GetTodosResponse;
@@ -210,8 +210,8 @@ export type ResolversParentTypes = {
   UpdateTodoResponse: UpdateTodoResponse;
 };
 
-export interface DatetimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Datetime'], any> {
-  name: 'Datetime';
+export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
+  name: 'DateTime';
 }
 
 export type GetTodoResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetTodoResponse'] = ResolversParentTypes['GetTodoResponse']> = {
@@ -247,11 +247,11 @@ export type RemoveTodoResponseResolvers<ContextType = any, ParentType extends Re
 };
 
 export type TodoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Todo'] = ResolversParentTypes['Todo']> = {
-  createdAt?: Resolver<ResolversTypes['Datetime'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   isCompleted?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  updatedAt?: Resolver<ResolversTypes['Datetime'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -261,7 +261,7 @@ export type UpdateTodoResponseResolvers<ContextType = any, ParentType extends Re
 };
 
 export type Resolvers<ContextType = any> = {
-  Datetime?: GraphQLScalarType;
+  DateTime?: GraphQLScalarType;
   GetTodoResponse?: GetTodoResponseResolvers<ContextType>;
   GetTodosResponse?: GetTodosResponseResolvers<ContextType>;
   MakeTodoResponse?: MakeTodoResponseResolvers<ContextType>;
