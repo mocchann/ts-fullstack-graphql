@@ -1,28 +1,9 @@
-import { Card } from "./components/Card";
-import { Logo } from "./components/Logo";
-import { ReadTheDocs } from "./components/ReadTheDocs";
-
-type Props = {
-  data: string;
-};
-
-export default function App(props: Props) {
+export default function App() {
   return (
-    <>
-      <Logo />
-      <h1>{props.data}</h1>
-      <Card />
-      <ReadTheDocs />
-    </>
+    <div className="App">
+      <div>
+        <h1 className="bg-red-600">hello world</h1>
+      </div>
+    </div>
   );
-}
-
-export async function getServerSideProps() {
-  const data = "Vite + React";
-
-  return {
-    props: {
-      data,
-    },
-  };
 }
