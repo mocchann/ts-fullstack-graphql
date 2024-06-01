@@ -6,7 +6,24 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 const apolloClient = new ApolloClient({
   uri: "http://localhost:5555/graphql",
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Todo: {
+        fields: {
+          createdAt: {
+            read(value) {
+              return new Date(value);
+            },
+          },
+          updatedAt: {
+            read(value) {
+              return new Date(value);
+            },
+          },
+        },
+      },
+    },
+  }),
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

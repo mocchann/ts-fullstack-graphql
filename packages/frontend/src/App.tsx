@@ -1,27 +1,15 @@
-import { gql, useQuery } from "@apollo/client";
-
-const getTodosQuery = gql`
-  query GetTodos {
-    getTodos {
-      todos {
-        id
-        title
-        isCompleted
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
+import { useTodosQuery } from "./__generated__/graphql";
 
 export default function App() {
-  const { data, loading, error } = useQuery(getTodosQuery);
+  const { data, loading, error } = useTodosQuery();
 
   return (
     <div className="App">
       <div>
-        {data?.getTodos?.todos.map((item: any) => (
-          <p key={item.id}>{item.title}</p>
+        {data?.getTodos?.todos?.map((item) => (
+          <p key={item?.id}>
+            {item?.title} {item?.createdAt.toISOString()}
+          </p>
         ))}
       </div>
     </div>
