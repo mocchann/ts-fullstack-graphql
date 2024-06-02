@@ -1,4 +1,7 @@
 import { Todo } from "../../__generated__/graphql";
+import { DropDownMenu } from "../Elements/DropDownMenu";
+import { AiOutlineEdit } from "react-icons/ai";
+import { BiTrash } from "react-icons/bi";
 
 type Props = {
   todoItem: Todo;
@@ -34,10 +37,29 @@ export const TodoItem = ({ todoItem }: Props): JSX.Element => {
           </small>
         </div>
       </div>
-
-      <small className="text-gray-500 hover:bg-gray-100 rounded-full p-1 cursor-pointer">
-        ***
-      </small>
+      <DropDownMenu
+        clickTarget={
+          <small className="text-gray-500 hover:bg-gray-100 rounded-full p-1">
+            ***
+          </small>
+        }
+        menuItems={[
+          <button
+            key={1}
+            className="flex justify-between w-full items-center text-gray-800"
+          >
+            <span>Edit</span>
+            <AiOutlineEdit />
+          </button>,
+          <button
+            key={2}
+            className="flex justify-between w-full items-center text-red-400"
+          >
+            <span>Remove</span>
+            <BiTrash />
+          </button>,
+        ]}
+      />
     </article>
   );
 };
