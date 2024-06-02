@@ -1,4 +1,4 @@
-import { BsMenuButton, BsMoon, BsSun } from "react-icons/bs";
+import { BsMoon, BsSun } from "react-icons/bs";
 
 type Props = {};
 
