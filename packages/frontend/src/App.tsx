@@ -11,7 +11,7 @@ export default function App() {
   return (
     <Layout>
       <Header />
-      <div className="max-w-xl mx-auto p-7 bg-red-200">
+      <div className="max-w-xl mx-auto p-7">
         <div className="bg-white p-6 rounded shadow">
           <form className="flex flex-col">
             <InputField
