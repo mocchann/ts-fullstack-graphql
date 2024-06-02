@@ -1,0 +1,8 @@
+mutation MakeTodo($makeTodoInput: MakeTodoInput!) {
+  makeTodo(makeTodoInput: $makeTodoInput) {
+    todo {
+      id
+      title
+    }
+  }
+}
