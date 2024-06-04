@@ -1,9 +1,10 @@
 import { BsMoon, BsSun } from "react-icons/bs";
+import { useDarkModeContext } from "../../context/DarkModeContext";
 
 type Props = {};
 
 export const Header = ({}: Props): JSX.Element => {
-  const isDarkMode = false;
+  const { isDarkMode, toggleIsDarkMode } = useDarkModeContext();
 
   return (
     <header className="px-6 py-5 border-b bg-white">
@@ -14,7 +15,9 @@ export const Header = ({}: Props): JSX.Element => {
         <section>
           <ul>
             <li>
-              <button>{isDarkMode ? <BsSun /> : <BsMoon />}</button>
+              <button onClick={toggleIsDarkMode}>
+                {isDarkMode ? <BsSun /> : <BsMoon />}
+              </button>
             </li>
           </ul>
         </section>
