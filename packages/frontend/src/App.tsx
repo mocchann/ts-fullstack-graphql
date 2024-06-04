@@ -7,8 +7,10 @@ import { Header } from "./components/Header";
 import { Layout } from "./components/Layout/Layout";
 import { TodoItem } from "./components/TodoItem";
 import { useTodos } from "./hooks/useTodos";
+import { useDarkModeContext } from "./context/DarkModeContext";
 
 export default function App() {
+  const { isDarkMode } = useDarkModeContext();
   const [title, setTitle] = useState<string>("");
   const {
     todoData,
@@ -32,7 +34,7 @@ export default function App() {
   };
 
   return (
-    <>
+    <div className={isDarkMode ? "dark" : "light"}>
       <Toaster position="top-right" />
       <Layout>
         <Header />
@@ -74,6 +76,6 @@ export default function App() {
           </div>
         </div>
       </Layout>
-    </>
+    </div>
   );
 }
