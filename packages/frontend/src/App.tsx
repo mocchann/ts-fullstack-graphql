@@ -7,8 +7,10 @@ import { Header } from "./components/Header";
 import { Layout } from "./components/Layout/Layout";
 import { TodoItem } from "./components/TodoItem";
 import { useTodos } from "./hooks/useTodos";
+import { useDarkModeContext } from "./context/DarkModeContext";
 
 export default function App() {
+  const { isDarkMode } = useDarkModeContext();
   const [title, setTitle] = useState<string>("");
   const {
     todoData,
@@ -32,12 +34,17 @@ export default function App() {
   };
 
   return (
-    <>
-      <Toaster position="top-right" />
+    <div className={isDarkMode ? "dark" : "light"}>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          className: "dark:bg-zinc-700 dark:text-zinc-100",
+        }}
+      />
       <Layout>
         <Header />
         <div className="max-w-xl mx-auto p-7">
-          <div className="bg-white p-6 rounded shadow">
+          <div className="bg-white p-6 rounded shadow dark:bg-zinc-700">
             <form onSubmit={handleSubmit} className="flex flex-col">
               <InputField
                 containerClassName="flex flex-col mb-6"
@@ -74,6 +81,6 @@ export default function App() {
           </div>
         </div>
       </Layout>
-    </>
+    </div>
   );
 }

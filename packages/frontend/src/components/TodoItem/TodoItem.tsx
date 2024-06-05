@@ -62,7 +62,7 @@ export const TodoItem = ({
     <article
       className={`flex justify-between items-center shadow-sm bg-white rounded border-l-8 border-blue-600 my-4 px-4 h-20 ${
         todoItem?.isCompleted ? "border-emerald-500" : "border-blue-500"
-      }`}
+      } dark:bg-zinc-700`}
       key={todoItem?.id}
     >
       <div className="flex items-center">
@@ -75,7 +75,7 @@ export const TodoItem = ({
         <div className="flex flex-col ml-4">
           {isTitleEditing ? (
             <input
-              className="focus:outline-none text-slate-600"
+              className="focus:outline-none text-slate-600 dark:bg-zinc-700 dark:text-zinc-100"
               type={"text"}
               value={todoTitleInput}
               onChange={handleTodoTitleInput}
@@ -87,7 +87,7 @@ export const TodoItem = ({
               className={`${
                 todoItem?.isCompleted
                   ? "text-emerald-500 line-through"
-                  : "text-slate-600"
+                  : "text-slate-600 dark:text-zinc-100"
               }`}
             >
               {todoItem?.title}
@@ -101,14 +101,14 @@ export const TodoItem = ({
       </div>
       <DropDownMenu
         clickTarget={
-          <small className="text-gray-500 hover:bg-gray-100 rounded-full p-1">
+          <small className="text-gray-500 hover:bg-gray-100 rounded-full p-1 dark:hover:bg-zinc-600">
             ***
           </small>
         }
         menuItems={[
           <button
             key={1}
-            className="flex justify-between w-full items-center text-gray-800"
+            className="flex justify-between w-full items-center text-gray-800 cursor-pointer dark:text-zinc-100"
             onClick={handleEditTitleBtnClick}
           >
             <span>Edit</span>
