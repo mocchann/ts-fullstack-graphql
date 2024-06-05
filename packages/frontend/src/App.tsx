@@ -35,11 +35,16 @@ export default function App() {
 
   return (
     <div className={isDarkMode ? "dark" : "light"}>
-      <Toaster position="top-right" />
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          className: "dark:bg-zinc-700 dark:text-zinc-100",
+        }}
+      />
       <Layout>
         <Header />
         <div className="max-w-xl mx-auto p-7">
-          <div className="bg-white p-6 rounded shadow">
+          <div className="bg-white p-6 rounded shadow dark:bg-zinc-700">
             <form onSubmit={handleSubmit} className="flex flex-col">
               <InputField
                 containerClassName="flex flex-col mb-6"
