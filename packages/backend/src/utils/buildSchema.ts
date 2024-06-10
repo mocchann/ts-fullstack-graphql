@@ -13,7 +13,7 @@ export const buildSchema = async () => {
     .sync(pathToResolvers)
     .map((resolversFile: string) => import(resolversFile));
   const resolvers = (await Promise.all(resolversPromises)).map(
-    (fileItems: { resolvers: any; }) => fileItems.resolvers
+    (fileItems: { resolvers: any }) => fileItems.resolvers
   );
 
   const pathToTypeDefs = path.join(pathToModules, "**", "*.graphql");
